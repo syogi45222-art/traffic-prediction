@@ -1,7 +1,7 @@
 import os
 import sys
 from pathlib import Path
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 # Add backend directory to sys.path so imports work from any working directory
@@ -18,11 +18,14 @@ def create_app():
     """Application factory for the Flask backend."""
     app = Flask(__name__)
 
-    # Configure CORS for Vite local dev and deployed frontend domains
+    # Configure CORS for Vite local dev and deployed frontend domains.
+    # supports_credentials=True requires an explicit origin (not wildcard).
     CORS(
         app,
         origins=Config.ALLOWED_ORIGINS,
         supports_credentials=True,
+        methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        allow_headers=["Content-Type", "Authorization", "X-Requested-With"],
     )
 
     # Initialize Database Schema & Admin Role

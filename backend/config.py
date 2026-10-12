@@ -48,5 +48,6 @@ class Config:
         "http://127.0.0.1:5173",
         "http://localhost:3000",
         "http://localhost:4173",
+        "https://traffic-prediction-three.vercel.app",
         *_configured_origins,
     })
