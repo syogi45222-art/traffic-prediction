@@ -54,6 +54,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 # Train model
 model = RandomForestClassifier(
     n_estimators=100,
+    max_depth=12,  # unbounded trees overfit (76% acc, ~265 MB RAM); depth 12 gives ~80% at ~11 MB
     random_state=42
 )
 
@@ -65,7 +66,6 @@ accuracy = model.score(X_test, y_test)
 print(f"Accuracy: {accuracy:.4f}")
 
 # Save model
-# xz compression: ~130 MB -> ~10 MB, same predictions (GitHub rejects files over 100 MB)
 joblib.dump(model, "ml/model.pkl", compress=("xz", 6))
 
 # Save weather encoder

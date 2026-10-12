@@ -67,7 +67,7 @@ You can deploy using either **Blueprint (Recommended)** or **Manual Web Service*
    - **Root Directory:** `backend`
    - **Runtime:** `Python 3`
    - **Build Command:** `pip install -r requirements.txt`
-   - **Start Command:** `gunicorn wsgi:app --workers 2 --timeout 120`
+   - **Start Command:** `gunicorn wsgi:app --workers 1 --threads 4 --timeout 120`
    - **Health Check Path:** `/health`
 3. Add **Environment Variables** (under Environment tab):
    - `OPENWEATHER_API_KEY`: Your OpenWeatherMap key
