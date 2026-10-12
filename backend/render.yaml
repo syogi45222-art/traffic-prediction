@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: smart-traffic-backend
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn wsgi:app --workers 2 --timeout 120
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: FLASK_DEBUG
+        value: "0"
+      - key: OPENWEATHER_API_KEY
+        sync: false
+      - key: TOMTOM_API_KEY
+        sync: false
+      - key: RAPIDAPI_KEY
+        sync: false
+      - key: FRONTEND_ORIGINS
+        sync: false

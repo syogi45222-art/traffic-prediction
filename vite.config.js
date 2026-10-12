@@ -1,0 +1,17 @@
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 5173,
+    proxy: {
+      '/predict': 'http://127.0.0.1:5000',
+      '/search_places': 'http://127.0.0.1:5000',
+      '/api': 'http://127.0.0.1:5000',
+      '/traffic_history': 'http://127.0.0.1:5000',
+      '/traffic_realtime': 'http://127.0.0.1:5000',
+      '/health': 'http://127.0.0.1:5000',
+    }
+  }
+});
