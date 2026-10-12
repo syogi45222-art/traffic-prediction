@@ -89,10 +89,11 @@ export default function LocationSearch({ id, label, onSelect, placeholder, value
           onChange={(e) => {
             const val = e.target.value;
             setQuery(val);
+            // Clear the selection while the user is typing so downstream
+            // effects (train fetch, prediction, etc.) don't fire on every keystroke.
+            // onSelect with real data is only called from handleSelect (dropdown pick).
             if (!val.trim()) {
               onSelect(null);
-            } else {
-              onSelect({ name: val.trim() });
             }
           }}
           onFocus={() => { if (places.length > 0) setShowDropdown(true); }}
